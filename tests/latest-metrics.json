@@ -1,0 +1,19 @@
+{
+  "generatedAt": "2026-08-30T01:23:36.170Z",
+  "dataset": "Frases españolas variadas generadas y evaluadas localmente; no existe tratamiento especial por frase.",
+  "total": 294,
+  "correct": 294,
+  "incorrect": 0,
+  "caesarTotal": 246,
+  "caesarCorrect": 246,
+  "atbashTotal": 48,
+  "atbashCorrect": 48,
+  "shiftCorrect": 246,
+  "plaintextCorrect": 294,
+  "accuracy": 100,
+  "caesarAccuracy": 100,
+  "atbashAccuracy": 100,
+  "shiftAccuracy": 100,
+  "plaintextAccuracy": 100,
+  "failures": []
+}
