@@ -1,8 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 
-const siteOrigin = process.env.NEXT_PUBLIC_SITE_URL
-  ?? 'https://criptoanalisis-al-kindi.juanmanuelfriascorte.chatgpt.site';
+const siteOrigin = process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteOrigin),
@@ -10,7 +9,7 @@ export const metadata: Metadata = {
   description:
     'Laboratorio local para cifrar con César y Atbash y realizar criptoanálisis estadístico automático en español.',
   applicationName: 'Criptoanálisis Al-Kindi',
-  robots: { index: true, follow: true },
+  robots: { index: false, follow: false },
   openGraph: {
     type: 'website',
     locale: 'es_MX',

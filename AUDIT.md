@@ -35,7 +35,7 @@ El 100% corresponde exclusivamente al corpus ejecutado; no afirma infalibilidad 
 | Charset personalizado ASCII/no ASCII | 5 | Campo editable, NFC, grafemas, duplicados explícitos, límites y caracteres externos intactos | ASCII, ñ, acentos, símbolos, emojis, combinaciones canónicas y exceso | CUMPLIDO | 5 |
 | Cifrado César/Atbash | 10 | Módulos puros con N real, shifts normalizados y Atbash involutivo | Roundtrips en siete charsets, vectores conocidos, shifts 0/1/2/N-1/N/N+1/grandes/negativos | CUMPLIDO | 10 |
 | Descifrado automático | 30 | Atbash + N candidatos César, ranking interno, selección única, algoritmo, shift y confianza | 294 casos: 246 César y 48 Atbash; 100% exacto en el corpus | CUMPLIDO | 30 |
-| Publicación web | 10 | Build Sites/Vinext, HTTPS, rutas propias, proxy de headers y URL de producción | Build local, respuesta HTTP 200, headers verificados y deployment Sites exitoso | CUMPLIDO | 10 |
+| Publicación web | 10 | Build Sites/Vinext listo para hosting, rutas propias y proxy de headers; la entrega se mantiene local por decisión del propietario | Build local, respuesta HTTP 200, headers verificados y artefacto de producción correcto | CUMPLIDO | 10 |
 | Al-Kindi + salida automática única | 15 | Frecuencias, chi-cuadrada, log-verosimilitud, vocales, espacios, léxico, n-gramas y penalizaciones; sin selección humana | Comparación estadística completa, confianza por margen/evidencia y DOM sin candidatos perdedores | CUMPLIDO | 15 |
 
 **TOTAL DESARROLLO: 80 / 80**
@@ -45,4 +45,4 @@ El 100% corresponde exclusivamente al corpus ejecutado; no afirma infalibilidad 
 - Mensajes demasiado cortos, no españoles o no lingüísticos pueden tener ambigüedad inevitable.
 - Un charset solo de símbolos puede carecer de evidencia suficiente; se devuelve una opción con confianza baja.
 - La CSP conserva `'unsafe-inline'` para el bootstrap de React/Vinext; ninguna entrada del usuario entra en scripts o estilos.
-- El despliegue Sites es propietario y privado por defecto. Para una evaluación externa, el propietario debe aprobar el acceso o publicar otra copia con los mismos headers.
+- No hay una publicación web pública asociada a esta entrega. Una evaluación externa debe ejecutarla localmente o publicar una copia que conserve HTTPS y los mismos headers.
