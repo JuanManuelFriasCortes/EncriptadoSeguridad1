@@ -1,7 +1,5 @@
 'use client';
 
-/* oxlint-disable jsx-a11y/label-has-associated-control -- call sites provide htmlFor or wrap a control */
-
 import * as React from 'react';
 
 import { cn } from '@/lib/utils';
