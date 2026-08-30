@@ -2,6 +2,8 @@
 
 Aplicación web educativa que cifra mensajes con César o Atbash sobre un conjunto de caracteres editable y descifra automáticamente una única respuesta probable mediante análisis estadístico del español inspirado en Al-Kindi.
 
+Sitio desplegado: [criptoanalisis-al-kindi.juanmanuelfriascorte.chatgpt.site](https://criptoanalisis-al-kindi.juanmanuelfriascorte.chatgpt.site)
+
 > César y Atbash no ofrecen seguridad criptográfica moderna. No deben usarse para contraseñas, credenciales ni información sensible.
 
 ## Objetivo técnico
@@ -119,3 +121,5 @@ npm run build
 La plataforma debe servir por HTTPS y conservar los headers de `proxy.ts`. Para otro proveedor estático, reproduce esos headers en su configuración; GitHub Pages no permite definirlos directamente, por lo que ofrece menos control de seguridad.
 
 El guion de exposición está en `DEMO.md`.
+
+La matriz de cumplimiento técnico y la autoevaluación están en `AUDIT.md`.

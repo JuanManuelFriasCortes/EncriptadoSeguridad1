@@ -22,7 +22,7 @@ No uses esta aplicación para proteger contraseñas, información bancaria, dato
 | Charset malicioso | Duplicados o whitespace | Transformación ambigua | Validación centralizada sin corrección silenciosa |
 | Manipulación del DOM | Extensiones o consola alteran la página | Resultados falsos | Modelo local no confía en DOM externo; CSP reduce fuentes ejecutables |
 | Clickjacking | Sitio embebido por tercero | Interacciones engañosas | CSP `frame-ancestors 'none'` y `X-Frame-Options: DENY` |
-| Hosting mal configurado | HTTP o headers ausentes | Intercepción o menor aislamiento | Sites/Cloudflare con HTTPS; headers aplicados en middleware |
+| Hosting mal configurado | HTTP o headers ausentes | Intercepción o menor aislamiento | Sites/Cloudflare con HTTPS; headers aplicados por `proxy.ts` |
 | Ingeniería social | Presentar César como protección real | Exposición de información | Advertencia visible y documentación explícita |
 | Falso positivo criptoanalítico | Texto corto o no español | Plaintext seleccionado incorrecto | Salida única exigida, confianza basada en evidencia y límites documentados |
 | DoS del analizador | Charset por mensaje grande | Uso elevado de CPU | Máximo de 1.5 millones de operaciones candidatas estimadas |
