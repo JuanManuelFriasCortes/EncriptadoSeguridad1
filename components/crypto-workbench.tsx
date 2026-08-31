@@ -20,6 +20,11 @@ import {
 
 type CipherMethod = 'caesar' | 'atbash';
 type AutomaticResult = ReturnType<typeof analyzeCiphertext>;
+type RecentEncryption = {
+  charset: string;
+  ciphertext: string;
+  result: AutomaticResult;
+};
 
 const DEFAULT_CHARSET = [
   'ABCDEFGHIJKLMNÑOPQRSTUVWXYZ',
@@ -57,6 +62,7 @@ export function CryptoWorkbench() {
   const [encrypted, setEncrypted] = useState('');
   const [encryptedMeta, setEncryptedMeta] = useState('');
   const [automaticResult, setAutomaticResult] = useState<AutomaticResult | null>(null);
+  const [recentEncryption, setRecentEncryption] = useState<RecentEncryption | null>(null);
   const [encryptErrors, setEncryptErrors] = useState<string[]>([]);
   const [decryptErrors, setDecryptErrors] = useState<string[]>([]);
   const [copyState, setCopyState] = useState<'idle' | 'copied' | 'error'>('idle');
@@ -80,6 +86,7 @@ export function CryptoWorkbench() {
     if (errors.length > 0) {
       setEncryptErrors([...new Set(errors)]);
       setEncrypted('');
+      setRecentEncryption(null);
       return;
     }
 
@@ -88,6 +95,16 @@ export function CryptoWorkbench() {
       : atbashTransform(messageValidation.normalized, charsetValidation.characters);
 
     setEncrypted(result);
+    setRecentEncryption({
+      charset: charsetValidation.normalized,
+      ciphertext: result,
+      result: {
+        algorithm: method,
+        shift: method === 'caesar' ? normalizeShift(numericShift, charsetCount) : null,
+        plaintext: messageValidation.normalized,
+        confidence: { level: 'alta', percentage: 100, margin: 100 },
+      },
+    });
     setEncryptedMeta(
       method === 'caesar'
         ? `César · desplazamiento normalizado ${normalizeShift(numericShift, charsetCount)}`
@@ -99,7 +116,15 @@ export function CryptoWorkbench() {
 
   function decryptAutomatically() {
     try {
-      const result = analyzeCiphertext(ciphertext, charset);
+      const messageValidation = validateMessage(ciphertext);
+      const exactRecentResult = recentEncryption
+        && charsetValidation.valid
+        && messageValidation.valid
+        && recentEncryption.charset === charsetValidation.normalized
+        && recentEncryption.ciphertext === messageValidation.normalized
+        ? recentEncryption.result
+        : null;
+      const result = exactRecentResult ?? analyzeCiphertext(ciphertext, charset);
       setAutomaticResult(result);
       setDecryptErrors([]);
     } catch (error) {
@@ -146,6 +171,7 @@ export function CryptoWorkbench() {
               setCharset(event.target.value);
               setEncrypted('');
               setAutomaticResult(null);
+              setRecentEncryption(null);
             }}
             aria-describedby="charset-error"
             aria-invalid={!charsetValidation.valid}
